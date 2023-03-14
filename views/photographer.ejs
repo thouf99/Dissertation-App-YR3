@@ -1,0 +1,57 @@
+<!doctype html>
+<html>
+  <p><img src="/Images/Re-wedd_logo.png" width= "150" alt="">
+    <form GET="POST" action="/logout">
+      <button type="submit" value="logout">Logout</button>
+      </form></p>
+  <p>
+    <a href="/">Back to home</a>
+    <a href="about">About <%=shopName%></a>
+    <a href="register">Register to <%=shopName%></a>
+    <a href="login">Login</a>
+    <a href="photographer">Photographer</a>
+</p>
+  <head>
+    <title>Welcome to <%=shopName%></title>
+    <link rel="stylesheet"  type="text/css" href="main.css" />
+  </head>
+  <body>
+    <h1><%=shopName%></h1>
+    <h2>Here are the photographers you have added:</h2>
+    <a href="addPhotographer"> Add your own</a>
+    <style>
+      table, th, td {
+        border:1px solid black;
+      }
+      input{
+        width: 95%;
+      }
+    </style>
+    <table style="width:100%">
+      <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Company</th>
+        <th>Price of printed copies</th>
+        <th>Price of digital copies</th>
+        <th>Number of camer personnel</th>
+        <th>Other Information?</th>
+        <th>username</th>
+      </tr>
+      <% allfoods.forEach(function(food) { %>
+        <tr>
+          
+          <th><input id="fid" type="text" name="fid" readonly="readonly" value="<%= food.ID %>" ></th>
+            <th><input id="nam" type="text" name="First" readonly="readonly" value="<%= food.Name %>"></th>
+            <th><input id="comp" type="text" name="tvalue" readonly="readonly" value="<%= food.Company %>"></th>
+            <th><input id="pack" type="text" name="uvalue" readonly="readonly" value="<%= food.PackPC %>"></th>
+            <th><input id="packd" type="text" name="carbos" readonly="readonly" value="<%= food.PackDC %>"></th>
+            <th><input id="nocampm" type="text" name="fats" readonly="readonly" value="<%= food.NoCamPM %>"></th>
+            <th><input id="other" type="text" name="protz" readonly="readonly" value="<%= food.OtherInfo %>"></th>
+            <th><input id="username" type="text" name="saltz" readonly="readonly" value="<%= food.Username %>"></th>
+          </th>    
+        </tr>
+      <% }) %>
+    </table>
+    </body>
+</html>

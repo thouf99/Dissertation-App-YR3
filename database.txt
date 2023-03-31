@@ -1,12 +1,206 @@
 CREATE TABLE Users(
--- FirstName varchar(255), 
--- LastName varchar(255), 
--- Email varchar(255),
--- Username varchar(255), 
--- HashedPassword varchar(255),
--- SpouseFName varchar(255), 
--- SpouseLName varchar(255), 
--- PlannerFName varchar(255),
--- PRIMARY KEY (Username)
--- );
+ FirstName varchar(255), 
+ LastName varchar(255), 
+ Email varchar(255),
+ Username varchar(255), 
+ HashedPassword varchar(255),
+ SpouseFName varchar(255), 
+ SpouseLName varchar(255), 
+ PlannerFName varchar(255),
+ PRIMARY KEY (Username)
+);
 
+
+
+CREATE TABLE Photographers (
+  ID int NOT NULL AUTO_INCREMENT,
+  Name varchar(255) NOT NULL,
+  Company varchar(255) NOT NULL,
+  PackPC float(10,2) NOT NULL,
+  PackDC float(10,2) NOT NULL,
+  NoCamPM int NOT NULL,
+  OtherInfo varchar(255) NOT NULL,
+  Username varchar(6) DEFAULT NULL,
+  PRIMARY KEY (ID)
+)  KEY Username (Username),
+  CONSTRAINT photographers_ibfk_1 FOREIGN KEY (Username) REFERENCES users (Username)
+ ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+
+CREATE TABLE Users (
+  FirstName varchar(255) DEFAULT NULL,
+  LastName varchar(255) DEFAULT NULL,
+  Email varchar(255) DEFAULT NULL,
+  Username varchar(6) NOT NULL,
+  HashedPassword varchar(255) DEFAULT NULL,
+  SpouseFName varchar(255) DEFAULT NULL,
+  SpouseLName varchar(255) DEFAULT NULL,
+  PlannerFName varchar(255) DEFAULT NULL,
+  PRIMARY KEY (Username)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+
+CREATE TABLE Planners (
+  FirstName varchar(255) DEFAULT NULL,
+  LastName varchar(255) DEFAULT NULL,
+  Email varchar(255) DEFAULT NULL,
+  Username varchar(6) NOT NULL,
+  HashedPassword varchar(255) DEFAULT NULL,
+  PRIMARY KEY (Username)
+)
+
+CREATE TABLE Itinerary(
+  ID int NOT NULL AUTO_INCREMENT,
+  Dates datetime NOT NULL,
+  Name varchar(255) NOT NULL,
+  Location varchar(255) NOT NULL,
+  NoGuests int NOT NULL,
+  Username varchar(6) DEFAULT NULL,
+  OtherInfo varchar(255) NOT NULL,
+  PRIMARY KEY (ID),
+  FOREIGN KEY (Username) REFERENCES Users (Username)
+);
+
+CREATE TABLE Videographers (
+  ID int NOT NULL AUTO_INCREMENT,
+  Name varchar(255) NOT NULL,
+  Company varchar(255) NOT NULL,
+  PackUSB float(10,2) NOT NULL,
+  PackDig float(10,2) NOT NULL,
+  NoCamVM int(255) NOT NULL,
+  OtherInfo varchar(255) NOT NULL,
+  Username varchar(6) DEFAULT NULL,
+  PRIMARY KEY (ID),
+  KEY Username (Username)
+);
+  CONSTRAINT Videographers_ibfk_1 FOREIGN KEY (Username) REFERENCES users (Username)
+
+CREATE TABLE Transport (
+  ID int NOT NULL AUTO_INCREMENT,
+  VehicleT varchar(255) NOT NULL,
+  Name varchar(255) NOT NULL,
+  CompanyN varchar(255) NOT NULL,
+  CompanyA varchar(255) not null,
+  DistanceR float(10,2) NOT NULL,
+  Deposit float(10,2) not null, 
+  TotalP float(10,2) NOT NULL,
+  ExtraInfo varchar(255) NOT NULL,
+  Username varchar(6) DEFAULT NULL,
+  PRIMARY KEY (ID),
+  KEY Username (Username)
+);
+  CONSTRAINT Transport_ibfk_1 FOREIGN KEY (Username) REFERENCES users (Username)
+
+CREATE TABLE Cake(
+  ID int NOT NULL AUTO_INCREMENT,
+  Name varchar(255) NOT NULL,
+  Flavour varchar(255) NOT NULL,
+  Type varchar(255) NOT NULL,
+  Homemade varchar(3) NOT NULL,
+  Tiers int(10) NOT NULL, 
+  Company varchar(255) NOT NULL,
+  Delivery date NOT NULL,
+  Price float(10,2) NOT NULL, 
+  Username varchar(6) DEFAULT NULL,
+  KEY Username (Username),
+  PRIMARY KEY (ID)
+);
+  CONSTRAINT Cake_ibfk_1 FOREIGN KEY (Username) REFERENCES users (Username)
+
+CREATE TABLE Florist(
+  ID int NOT NULL AUTO_INCREMENT,
+  Name varchar(255) NOT NULL,
+  Company varchar(255) NOT NULL,
+  Address varchar(255) NOT NULL,
+  Type varchar(255) NOT NULL,
+  StemC float(10,2) NOT NULL,
+  Boquet float(10,2) NOT NULL,
+  Extra varchar(255) NOT NULL,
+  Delivery date NOT NULL,
+  TotalP float(10,2) NOT NULL, 
+  Username varchar(6) DEFAULT NULL,
+  KEY Username (Username),
+  PRIMARY KEY (ID)
+);
+  CONSTRAINT Florist_ibfk_1 FOREIGN KEY (Username) REFERENCES users (Username)
+
+CREATE TABLE Budget(
+  ID int NOT NULL AUTO_INCREMENT,
+  Photographer float(10,2) NOT NULL,
+  Videographer float(10,2) NOT NULL,
+  Florist float(10,2) NOT NULL,
+  Transport float(10,2) NOT NULL,
+  ReligiousLOC float(10,2) NOT NULL,
+  Venue float(10,2) NOT NULL,
+  Cake float(10,2) NOT NULL,
+  WeddingF float(10,2) NOT NULL,
+  Username varchar(6) DEFAULT NULL,
+  KEY Username (Username),
+  PRIMARY KEY (ID)
+);
+  CONSTRAINT Budget_ibfk_1 FOREIGN KEY (Username) REFERENCES users (Username)
+
+CREATE TABLE Venue(
+  ID int NOT NULL AUTO_INCREMENT,
+  Name varchar(255) NOT NULL,
+  Address varchar(255) NOT NULL,
+  Guests int(100) NOT NULL,
+  Stage float(10,2) NOT NULL,
+  Food float(10,2) NOT NULL,
+  Price float(10,2) NOT NULL,
+  ExtraInfo varchar(255) NOT NULL,
+  Username varchar(6) DEFAULT NULL,
+  KEY Username (Username),
+  PRIMARY KEY (ID)
+);
+  CONSTRAINT Venue_ibfk_1 FOREIGN KEY (Username) REFERENCES users (Username)
+
+CREATE TABLE ReligiousLOC(
+  ID int NOT NULL AUTO_INCREMENT,
+  Name varchar(255) NOT NULL,
+  Type varchar(255) NOT NULL,
+  DateTime datetime NOT NULL,
+  Price float(10,2) NOT NULL,
+  ExtraInfo varchar(255) NOT NULL,
+  Username varchar(6) DEFAULT NULL,
+  KEY Username (Username),
+  PRIMARY KEY (ID)
+);
+  CONSTRAINT ReligiousLOC_ibfk_1 FOREIGN KEY (Username) REFERENCES users (Username)
+
+CREATE TABLE WeddingF(
+  ID int NOT NULL AUTO_INCREMENT,
+  DateTime datetime NOT NULL,
+  Name varchar(255) NOT NULL,
+  Location varchar(255) NOT NULL,
+  Guests varchar(255) NOT NULL,
+  Activity varchar(255) NOT NULL,
+  Price float(10,2) NOT NULL,
+  ExtraInfo varchar(255) NOT NULL,
+  Username varchar(6) DEFAULT NULL,
+  KEY Username (Username),
+  PRIMARY KEY (ID)
+);
+  CONSTRAINT WeddingF_ibfk_1 FOREIGN KEY (Username) REFERENCES users (Username)
+
+CREATE TABLE ContactUs(
+  ID int NOT NULL AUTO_INCREMENT,
+  FirstName varchar(255),
+  LastName varchar(255),
+  Email varchar(255) NOT NULL, 
+  Message longtext NOT NULL,
+  AdditionalInfo longtext NOT NULL,
+  Username varchar(6) DEFAULT NULL,
+  KEY Username (Username),
+  PRIMARY KEY (ID),
+  CONSTRAINT ContactUs_ibfk_1 FOREIGN KEY (Username) REFERENCES users (Username)
+);
+
+Planner
+rAdd.ejs
+dReligious.ejs
+dR.ejs
+sR.ejs
+
+spouse
+religious.ejs
+editReligious.ejs
+addReligious.ejs

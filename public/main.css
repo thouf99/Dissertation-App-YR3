@@ -1,88 +1,344 @@
-.test{
-  position:absolute; left:80px; top:20px;
-}
-button{
-  position:absolute; right:80px; top:20px;
+* {
+  padding: 10; margin: 10;
+  background-image: linear-gradient(to bottom, rgba(0, 162, 255, 0.776) 0%, rgba(0, 162, 255, 0.776) 100%), linear-gradient(to bottom, rgba(0, 162, 255, 0.776) 0%, rgba(0, 162, 255, 0.776) 100%);
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+  text-transform: capitalize;
+  text-decoration: none;
   
-  height: 50px;
-  width: 100px;
-}
-body{ 
-  background-color: rgb(255, 229, 180);
 }
 
-input, button{
-  color: white;
-  background-color: rgb(37, 151, 22);
-  font-size: 16px;
+
+.designer {
+  border-collapse: collapse;
+  margin: 25px 0;
+  font-size: 0.9em;
+  font-family: sans-serif;
+  min-width: 400px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
 }
-h1 {
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 20px;
-    color: #4169e1;
+
+/* from here and to line 182
+  the relevant code blocks relate to the navigation of the site
+*/
+
+navMenu{
+  position: sticky;
+  position: relative;
+  top: 0; left: 0; right: 0;
+  background: #00a2ffc6;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, .2);
+  padding: 10px 0%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 1000;
+}
+
+/*When the menu bar far exceeds the height of
+the screen when some are clicked on*/
+.navMenu-content {
+  position: absolute;
+  z-index: 1;
+  bottom: 100%;
+}
+/*When the menu bar far exceeds the height of
+the screen when hovered on*/
+.navMenu:hover .navMenu-content {
+  display: block;
+}
+
+navMenu .logo{
+  background-size: 100px 100px;
+  background-repeat: no-repeat;
+  width: 120;
+  height: 120px;
+}
+
+navMenu .navigation ul{
+  list-style: none;
+}
+
+navMenu .navigation ul li{
+  border: 1px solid white;
+  position: relative;
+  left: -75px;
+  float: left;
+}
+
+navMenu .navigation ul li a{
+  font-size: 20px;
+  padding: 20px;
+  color: #333;
+  display: block;
+}
+
+navMenu .navigation ul li a:hover{
+  background: #333;
+  color: #00a2ffc6;
+}
+
+navMenu .navigation ul li ul{
+  position: absolute;
+  left: 0;
+  width: 200px;
+  background: #00a2ffc6;
+  display: none;
+}
+
+navMenu .navigation ul li ul li{
+  width: 100%;
+  border-top: 1px solid rgba(0, 0, 0, .1);
+  left: -40px;
+}
+
+navMenu .navigation ul li ul li ul{
+  left: 200px;
+  top: 0;
+}
+
+navMenu .navigation ul li ul li ul li{
+  left: -80px;
+  top: 0;
+}
+
+navMenu .navigation ul li:focus-within > ul,
+navMenu .navigation ul li:hover > ul{
+  display: initial;
+}
+
+#mba{
+  display: none;
+}
+
+navMenu label{
+  font-size: 20px;
+  color: #333;
+  cursor: pointer;
+  display: none;
+}
+
+inputs{
+  position: relative;
+  /* right:80px; top:20px; */
+  height: 63px;
+  width: 100px;
+  background-color: #fff;
+  /* border: none; */
+  font-size: large;
+  border: 0px solid rgb(255, 255, 255);
+}
+inputs:hover{
+  background: #333;
+  color: #fff;
+  font-size: large;
+}
+
+#logout{
+  width: 90px;
+  height: 63.2px;
+  background:#0147af;
+  color: #fff;
+  /* border: 1px solid white; */
+  
+}
+
+/* dimensions of navigation bar when on different devices */
+@media(max-width: 991px) {
+  
+  navMenu{
+    padding: 10px;
+  }
+
+  navMenu label{
+    display: initial;
+  
+  }
+
+  navMenu .navigation{
+    max-height: 1000px;
+    width: 100%;
+    position: absolute;
+    top: 100%; left: 0; right: 0;
+    background: #fff;
+    border-top: 1px solid rgba(0, 0, 0, .1);
+    display: none;
+    overflow-y:scroll;
+
+  }
+
+  navMenu .navigation ul li{
+    width: 100%;
+    overflow-y:scroll;
+    left: auto;
+
+  }
+
+  navMenu .navigation ul li ul{
+    position: relative;
+    width: 100%;
+    overflow-y:scroll;
+
+  }
+  
+  navMenu .navigation ul li ul li{
+    position: relative;
+    width: 100%;
+    left: -20px;
+    overflow-y:scroll;
+
+  }
+
+  navMenu .navigation ul li ul li ul li{
+    width: 100%;
+    background: #eee;
+    left: -190px;
+    top: 0;
+    overflow-y:scroll;
+
+  }
+
+  #mba:checked ~ .navigation{
+    width: 100%;
+    display: initial;
+    overflow-y:scroll;
+
+  }
+
+}
+
+/* input forms design */
+
+sectioning {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  width: 100%;
+  /* background: #0f0; */
+  background: url('/images/pxfuel.jpg') no-repeat;
+  background-image: center;
+  background-size: cover;
+}
+
+.box {
+  position: relative;
+  width: 400px;
+  height: 450px;
+  background: transparent;
+  border: 2px solid rgba(255,255,255,0.5);
+  border-radius: 20px;
+  backdrop-filter: blur(15px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.form-value{
+  background: transparent
 }
 
 h2 {
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 20px;
-    color: rgb(30, 150, 154);
+  font-size: 2em;
+  color: #fff;
+  text-align: center;
 }
 
-p,li {
-    font-family: Arial, Helvetica, sans-serif;
-
+.inputs {
+  position: relative;
+  margin: 30px 0;
+  width: 310px;
+  border-bottom: 2px solid #fff;
 }
 
-a:link {
-    color: #4169e1;
-    text-decoration: none;
-    padding:5px;
-  }
-  
-  /* visited link */
-  a:visited {
-    /* color: tomato; */
-    color: black;
-    /* color: #4169e1; */
+.inputs label {
+  position: absolute;
+  top: 50%;
+  left: 5px;
+  background: transparent;
+  transform: translateY(-50%);
+  color: #fff;
+  font-size: 1em;
+  pointer-events: none;
+  transition: .5s;
+}
 
-    /* text-decoration: none; */
-    text-shadow: 1.2px 0 0 #000, 0 -1.2px 0 #000, 0 1.2px 0 #000, -1.2px 0 0 #000;
-    padding:5px;
-  }
-  
-  /* mouse over link */
-  a:hover {
-    color: white;
-    text-decoration: none;
-    background-color: #4169e1;
-    padding:5px;
-  }
-  
-  /* selected link */
-  a:active {
-    color: blue;
-    text-decoration: none;
-    padding:5px;
-  }
-  .button {
-    font-size: 10px;
-    /* background-color: blueviolet; */
-  }
-  #btn{
-    background-color: #4169e1;}
+input:focus ~ label,
+input:valid ~ label {
+  top: -5px;
+}
 
-  #btnd{
-    background-color: red;}
+.inputs input {
+  width: 100%;
+  height: 50px;
+  background: transparent;
+  border: none;
+  outline: none;
+  font-size: 1em;
+  padding: 0 35px 0 5px;
+  color: #fff;
+}
 
-  #search{
-    background-color: darkgoldenrod;
-    color: white;
-  }
-  #register{
-    background-color: darkgoldenrod;
-    color: white;
-  }
+.forget {
+  margin: -15px 0 15px;
+  font-size: .9em;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+}
 
-  #a{
-    width: auto;
-  }
+.forget label input {
+  margin-right: 3px;
+}
+
+.forget a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.forget a:hover {
+  text-decoration: underline;
+}
+
+button {
+  width: 100%;
+  height: 40px;
+  border-radius: 40px;
+  background: #fff;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  font-size: 1em;
+  font-weight: 600;
+}
+
+.register {
+  font-size: .9em;
+  color: #fff;
+  text-align: center;
+  margin: 25px 0 10px;
+}
+
+.register p a {
+  text-decoration: none;
+  color: #fff;
+  font-weight: 600;
+}
+
+.register p a:hover {
+  text-decoration: underline;
+}
+
+/**/
+
+w {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  width: 100%;
+  background: url('/Images/wedd.jpeg') no-repeat;
+  color: #00d0ff;
+  background-image: center;
+  background-size: cover;
+}

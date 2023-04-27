@@ -2769,4 +2769,8 @@ module.exports = function(app, shopData) {
             }
         });
     });
+
+    // app.get('/todo', function (req,res) {
+    //     res.render('index.php',shopData);                                                              
+    // });
 }
